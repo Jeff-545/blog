@@ -217,11 +217,38 @@ printf '%s\\n' 'a very long code line that should scroll without stretching the 
                     self.assertEqual(page.locator("html").get_attribute("data-theme"), "light")
                     if self.screenshots:
                         page.screenshot(path=str(Path(self.screenshots) / "desktop-light.png"), full_page=True)
-                    for width in (320, 375, 768, 1440):
+                    for width in (320, 375, 768, 1280, 1440, 1600):
                         page.set_viewport_size({"width": width, "height": 900})
                         for path in ("", "posts/note-1/", "categories/技术/"):
                             page.goto(url + path)
                             self.assertFalse(page.evaluate("document.documentElement.scrollWidth > window.innerWidth"), f"Overflow at {width}px on {path}")
+                    toc_metrics = {}
+                    for width in (320, 768, 1280, 1440, 1600):
+                        page.set_viewport_size({"width": width, "height": 900})
+                        page.goto(url + "posts/note-1/")
+                        toc = page.locator(".article-toc")
+                        toc_metrics[width] = toc.evaluate("el => getComputedStyle(el).position")
+                        main_before = page.locator("main").bounding_box()
+                        toc_box = toc.bounding_box()
+                        prose_box = page.locator(".prose").bounding_box()
+                        if width >= 1440:
+                            self.assertEqual(toc_metrics[width], "fixed")
+                            self.assertGreaterEqual(toc_box["x"], main_before["x"] + main_before["width"])
+                            self.assertLessEqual(toc_box["x"] + toc_box["width"], width)
+                            toc.locator("summary").click()
+                            self.assertTrue(toc.locator("#TableOfContents").is_visible())
+                            self.assertEqual(page.locator("main").bounding_box(), main_before, "Opening the floating TOC must not resize the article")
+                            toc_height = toc_box["height"]
+                            page.evaluate("window.scrollTo(0, 120)")
+                            self.assertGreater(page.evaluate("window.scrollY"), 0)
+                            toc_after_scroll = toc.bounding_box()
+                            self.assertAlmostEqual(toc_after_scroll["y"] + toc_after_scroll["height"] / 2, 450, delta=2, msg="The TOC must stay fixed in the viewport while reading")
+                            main_after_scroll = page.locator("main").bounding_box()
+                            for dimension in ("x", "width", "height"):
+                                self.assertEqual(main_after_scroll[dimension], main_before[dimension], f"Scrolling the floating TOC must not change article {dimension}")
+                        else:
+                            self.assertEqual(toc_metrics[width], "static")
+                            self.assertLess(toc_box["y"], prose_box["y"], "On narrow screens the collapsed TOC stays above the article body")
                     page.set_viewport_size({"width": 375, "height": 900})
                     page.goto(url)
                     mobile_nav = page.locator(".sidebar").bounding_box()

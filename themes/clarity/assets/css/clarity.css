@@ -140,6 +140,31 @@ button, a { touch-action: manipulation; }
 .article-toc summary { cursor: pointer; color: var(--text); }
 .article-toc ul { padding-left: 20px; }
 .article-toc a:hover { color: var(--accent); }
+@media (min-width: 1440px) {
+  .article-toc {
+    position: fixed;
+    z-index: 20;
+    top: 50%;
+    right: max(20px, calc((100vw - 1120px) / 2 - 216px));
+    width: 184px;
+    max-height: min(78vh, 680px);
+    overflow: auto;
+    overscroll-behavior: contain;
+    transform: translateY(-50%);
+    margin: 0;
+    padding: 12px 14px;
+    background: color-mix(in srgb, var(--bg) 94%, transparent);
+    box-shadow: 0 8px 28px rgb(0 0 0 / 12%);
+    backdrop-filter: blur(10px);
+    font-size: 11px;
+    scrollbar-width: thin;
+  }
+  .article-toc[open] { border-left: 2px solid var(--accent); }
+  .article-toc #TableOfContents { margin-top: 10px; }
+  .article-toc ul { margin: 0; padding-left: 14px; list-style: none; }
+  .article-toc li { margin: 5px 0; }
+  .article-toc a { display: block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+}
 .prose { color: var(--copy); font-size: 15px; line-height: 1.95; overflow-wrap: anywhere; }
 .prose > :first-child { margin-top: 0; }
 .prose h1, .prose h2, .prose h3, .prose h4, .prose h5, .prose h6 { font-weight: 600; line-height: 1.5; color: var(--text); margin: 2em 0 .8em; }
