@@ -3,6 +3,7 @@ title = '用 GitHub Pages 和 Hugo 搭建个人博客：从零开始到自动发
 date = '2026-10-16T12:05:00+08:00'
 draft = false
 categories = ['hugo']
+aliases = ['/posts/github-pages-hugo-personal-blog/']
 tags = ['GitHub Pages', '博客搭建', '自动部署']
 description = '从理解静态博客开始，逐步完成 Hugo 安装、主题配置、Markdown 写作、GitHub Pages 自动部署，并解决路径、草稿、主题子模块和推送权限等常见问题。'
 +++
