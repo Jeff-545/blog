@@ -1,0 +1,26 @@
+{{ $page := . }}
+{{ $pages := partial "collection-pages.html" . }}
+{{ $paginator := $page.Paginate $pages }}
+<h1 class="sr-only">{{ if $page.IsHome }}全部文章{{ else }}{{ $page.Title }}{{ end }}</h1>
+{{ with $page.Content }}<div class="prose collection-body">{{ . }}</div>{{ end }}
+{{ if $paginator.Pages }}
+  <div class="list-heading" aria-hidden="true"><span>文章 / WRITING</span><span>发布时间</span></div>
+  <ol class="article-list">
+    {{ range $paginator.Pages }}
+      <li class="article-row">
+        <a class="article-link" href="{{ .RelPermalink }}">
+          <div class="article-info">
+            {{ with .GetTerms "categories" }}<p class="article-categories">{{ range $i, $term := . }}{{ if $i }}<span aria-hidden="true"> / </span>{{ end }}{{ $term.LinkTitle }}{{ end }}</p>{{ end }}
+            <h2>{{ .LinkTitle }}</h2>
+            {{ with .Description }}<p class="article-description">{{ . }}</p>{{ end }}
+            {{ if .Draft }}<span class="draft-label">草稿</span>{{ end }}
+          </div>
+          <div class="article-trailing"><time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "2006.01.02" }}</time><span class="article-arrow" aria-hidden="true">↗</span></div>
+        </a>
+      </li>
+    {{ end }}
+  </ol>
+  {{ partial "pagination.html" $paginator }}
+{{ else }}
+  <div class="empty-state"><span class="empty-symbol" aria-hidden="true">[ … ]</span><h2>故事，正在酝酿。</h2><p>这里还没有发布的文章，下一次相见，也许就有新的记录。</p></div>
+{{ end }}

@@ -1,0 +1,14 @@
+<header class="site-header">
+  <a class="site-brand" href="{{ site.Home.RelPermalink }}" aria-label="{{ site.Title }}，首页">
+    <span class="brand-mark" aria-hidden="true">{{ substr site.Title 0 1 }}</span>
+    <span class="site-title">{{ site.Title }}</span>
+  </a>
+  <div class="header-actions">
+    <span class="header-note">{{ site.Params.tagline | default "记录 · 思考 · 分享" }}</span>
+    {{ with site.Home.OutputFormats.Get "rss" }}<a class="rss-link" href="{{ .RelPermalink }}" aria-label="订阅 RSS">RSS <span aria-hidden="true">↗</span></a>{{ end }}
+    <button class="theme-toggle" type="button" aria-label="切换到浅色模式" title="切换到浅色模式" hidden>
+      <svg class="icon-sun" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M2 12h2m16 0h2M5 5l1.5 1.5m11 11L19 19M5 19l1.5-1.5m11-11L19 5"/></svg>
+      <svg class="icon-moon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M20.5 13.5A8.5 8.5 0 0 1 10.5 3.5a8.5 8.5 0 1 0 10 10Z"/></svg>
+    </button>
+  </div>
+</header>

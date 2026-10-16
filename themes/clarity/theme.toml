@@ -1,0 +1,9 @@
+name = 'Clarity'
+license = 'MIT'
+description = 'A minimal two-column Hugo theme for focused reading.'
+tags = ['blog', 'minimal', 'responsive', 'dark', 'light']
+features = ['categories', 'pagination', 'rss', 'theme-toggle']
+min_version = '0.158.0'
+
+[author]
+  name = 'Jeff'

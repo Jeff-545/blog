@@ -1,4 +1,11 @@
 baseURL = 'https://jeff-545.github.io/blog'
 locale = 'zh-cn'
 title = '求真明智'
-theme = "ananke"
+theme = 'clarity'
+
+[pagination]
+  pagerSize = 12
+
+[params]
+  tagline = '记录 · 思考 · 分享'
+  description = '把想法写下来，让思考有迹可循。'

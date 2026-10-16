@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="{{ site.Language.Locale | default "zh-CN" }}">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="dark light">
+  <title>{{ if not .IsHome }}{{ .Title }} · {{ end }}{{ site.Title }}</title>
+  {{ $description := .Description | default site.Params.description }}
+  {{ with $description }}<meta name="description" content="{{ . }}">{{ end }}
+  {{ $canonical := .Permalink }}
+  {{ if in (slice "home" "section" "term") .Kind }}
+    {{ $pages := partial "collection-pages.html" . }}
+    {{ $paginator := .Paginate $pages }}
+    {{ $canonical = $paginator.URL | absURL }}
+  {{ end }}
+  <link rel="canonical" href="{{ $canonical }}">
+  {{ with site.Home.OutputFormats.Get "rss" }}<link rel="alternate" type="application/rss+xml" title="{{ site.Title }}" href="{{ .RelPermalink }}">{{ end }}
+  {{ $css := resources.Get "css/clarity.css" | minify | fingerprint }}
+  <link rel="stylesheet" href="{{ $css.RelPermalink }}" integrity="{{ $css.Data.Integrity }}">
+  {{ $js := resources.Get "js/clarity.js" | minify | fingerprint }}
+  <script src="{{ $js.RelPermalink }}" integrity="{{ $js.Data.Integrity }}"></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">跳转到正文</a>
+  <div class="site-shell">
+    {{ partial "header.html" . }}
+    <div class="site-layout">
+      {{ partial "sidebar.html" . }}
+      <main id="main" class="main-content" tabindex="-1">
+        {{ block "main" . }}{{ end }}
+      </main>
+    </div>
+    <footer class="site-footer">
+      <span>© {{ now.Year }} {{ site.Title }}</span>
+      <span>静心记录，慢慢生长。 <span class="footer-credit">/ Hugo · Clarity</span></span>
+    </footer>
+  </div>
+</body>
+</html>

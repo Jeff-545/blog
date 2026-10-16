@@ -23,20 +23,22 @@ GitHub Pages 支持两类站点地址：
 baseURL = 'https://jeff-545.github.io/blog'
 locale = 'zh-cn'
 title = '求真明智'
-theme = "ananke"
+theme = 'clarity'
 ```
 
 `baseURL` 应对应 GitHub Pages 的最终地址。部署工作流会根据 GitHub Pages 提供的地址覆盖构建时的 `baseURL`，避免项目站点资源路径错误。
 
 ## 3. 添加主题和内容
 
-本博客将 Ananke 作为 Git 子模块保存，`.gitmodules` 中记录主题仓库地址。添加或初始化主题时使用：
+本博客目前使用自建 Clarity 主题，源码保存在 `themes/clarity/`，无需额外下载。分类、文章和外观配置见[主题使用指南](../themes/clarity.md)。
+
+最初搭建时使用 Ananke，原主题仍以 Git 子模块形式保留。以下命令仅供从头搭建并选择 Ananke 时参考（此时应设置 `theme = 'ananke'`），不需要为 Clarity 执行：
 
 ```bash
 git submodule add https://github.com/theNewDynamic/gohugo-theme-ananke.git themes/ananke
 ```
 
-初始化已有仓库中的子模块：
+如需使用已有仓库保留的 Ananke 子模块，可以执行：
 
 ```bash
 git submodule update --init --recursive
@@ -73,7 +75,7 @@ Hugo 默认将生成的网站放在 `public/`。它是构建产物，本仓库�
 仓库中的 `.github/workflows/hugo.yaml` 定义自动部署流程。核心步骤如下：
 
 1. 推送到 `main` 分支或手动触发工作流。
-2. 检出源码和 Ananke 子模块（`submodules: recursive`）。
+2. 检出源码（包含 Clarity 主题），同时递归检出保留的 Ananke 备用子模块（`submodules: recursive`）。
 3. 安装 Hugo 并构建站点。
 4. 上传 `public/` 构建产物并部署到 GitHub Pages。
 
@@ -112,7 +114,7 @@ run: hugo --minify --baseURL "${{ steps.pages.outputs.base_url }}/"
 
 ## 常见问题
 
-- **主题目录为空或构建时报主题不存在**：检出仓库时需要初始化子模块；GitHub Actions 中应保留 `submodules: recursive`。
+- **主题目录为空或构建时报主题不存在**：Clarity 需要将 `themes/clarity/` 随仓库提交；如果改用 Ananke，则需要初始化子模块，GitHub Actions 中保留 `submodules: recursive`。
 - **页面打开但样式或图片路径错误**：检查 `baseURL` 和工作流传入的 `--baseURL`。项目站点 URL 需要包含仓库路径（本例为 `/blog/`）。
 - **文章没有发布**：确认文章不是草稿（`draft = false` 或没有 `draft` 字段）。
 - **部署工作流失败**：查看 **Actions** 中失败步骤的日志，并确认 Pages 来源已设为 **GitHub Actions**、工作流具有 `pages: write` 和 `id-token: write` 权限。

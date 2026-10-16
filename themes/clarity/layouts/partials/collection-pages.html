@@ -1,0 +1,3 @@
+{{ $pages := .RegularPagesRecursive }}
+{{ if .IsHome }}{{ $pages = site.RegularPages }}{{ end }}
+{{ return $pages.ByDate.Reverse }}

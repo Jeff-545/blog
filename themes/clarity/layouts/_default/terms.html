@@ -1,0 +1,8 @@
+{{ define "main" }}
+<h1 class="sr-only">{{ if eq .Data.Singular "category" }}文章分类{{ else if eq .Data.Singular "tag" }}文章标签{{ else }}{{ .Title }}{{ end }}</h1>
+<ul class="term-list">
+  {{ range .Data.Terms.Alphabetical }}
+  <li><a href="{{ .Page.RelPermalink }}"><span>{{ .Page.LinkTitle }}</span><span class="term-count">{{ .Count }} 篇 <span aria-hidden="true">↗</span></span></a></li>
+  {{ else }}<li class="empty-state"><p>暂时还没有主题。</p></li>{{ end }}
+</ul>
+{{ end }}

@@ -1,0 +1,24 @@
+{{ $current := . }}
+{{ $allActive := or .IsHome (and .IsSection (eq .Section "posts")) }}
+{{ $articleTerms := .GetTerms "categories" }}
+<aside class="sidebar" aria-label="文章分类">
+  <div class="sidebar-sticky">
+    <p class="eyebrow sidebar-label"><span class="status-dot" aria-hidden="true"></span>主题 / TOPICS</p>
+    <nav class="category-nav" aria-label="分类导航">
+      <a class="category-link{{ if $allActive }} is-active{{ end }}" href="{{ site.Home.RelPermalink }}"{{ if $allActive }} aria-current="page"{{ end }}>
+        <span>全部文章</span><span class="category-count">{{ len site.RegularPages }}</span>
+      </a>
+      {{ range site.Taxonomies.categories.Alphabetical }}
+        {{ $active := eq $current.RelPermalink .Page.RelPermalink }}
+        {{ $inCategory := false }}
+        {{ $termURL := .Page.RelPermalink }}
+        {{ range $articleTerms }}{{ if eq .RelPermalink $termURL }}{{ $inCategory = true }}{{ end }}{{ end }}
+        <a class="category-link{{ if or $active $inCategory }} is-active{{ end }}" href="{{ .Page.RelPermalink }}"{{ if $active }} aria-current="page"{{ else if $inCategory }} aria-current="true"{{ end }}>
+          <span>{{ .Page.LinkTitle }}</span><span class="category-count">{{ .Count }}</span>
+        </a>
+      {{ end }}
+    </nav>
+    {{ if not site.Taxonomies.categories }}<p class="sidebar-hint">分类随文章慢慢生长。</p>{{ end }}
+    <div class="sidebar-colophon"><span class="small-rule" aria-hidden="true"></span><p>{{ site.Params.description | default "把想法写下来，\n让思考有迹可循。" }}</p></div>
+  </div>
+</aside>

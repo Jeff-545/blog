@@ -1,0 +1,16 @@
+{{ define "main" }}
+<article class="single-article">
+  <a class="back-link" href="{{ site.Home.RelPermalink }}">← 全部文章</a>
+  <header class="article-header">
+    <div class="article-meta"><time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "2006.01.02" }}</time><span aria-hidden="true">/</span><span>约 {{ .ReadingTime }} 分钟</span>{{ if .Draft }}<span class="draft-label">草稿</span>{{ end }}</div>
+    <h1>{{ .Title }}</h1>
+    {{ with .Description }}<p class="article-lead">{{ . }}</p>{{ end }}
+    {{ with .GetTerms "categories" }}<div class="article-topics">{{ range . }}<a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a>{{ end }}</div>{{ end }}
+  </header>
+  {{ if .Fragments.Headings }}
+  <details class="article-toc"><summary>文章目录</summary>{{ .TableOfContents }}</details>
+  {{ end }}
+  <div class="prose">{{ .Content }}</div>
+  <footer class="article-end"><span aria-hidden="true">—</span><p>感谢阅读。</p><a href="{{ site.Home.RelPermalink }}">返回文章列表 ↗</a></footer>
+</article>
+{{ end }}
