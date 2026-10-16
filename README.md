@@ -19,7 +19,11 @@ hugo server -D  # 本地预览，包含草稿
 hugo --minify  # 正式构建，不发布草稿或未来文章
 ```
 
-当前已有文章仍是草稿，正式首页会显示空状态；发布文章后，列表和分类会自动生成。
+示例草稿已清理；正式文章的列表和分类会自动生成。
+
+## 博客文章
+
+- [用 GitHub Pages 和 Hugo 搭建个人博客：从零开始到自动发布](content/posts/github-pages-hugo-personal-blog.md)：工具分工、环境安装、主题与写作、自动部署、图片管理、日常发布和常见问题。
 
 ## GitHub Pages 自动部署
 

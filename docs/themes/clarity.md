@@ -61,7 +61,7 @@ description = '可选的一句话介绍，会显示在文章列表与正文标�
 
 在 Front Matter 后编写 Markdown 正文即可。`categories` 中的分类自动显示在左侧，不需要手工维护菜单。支持中文及一篇文章属于多个分类；未分类文章仍出现在“全部文章”。分类按 Hugo 的名称顺序排列，文章按日期倒序排列，计数只包含当前构建实际收录的内容。
 
-当前仓库的 `first-post.md` 仍为草稿，未改动其发布状态。使用 `hugo server -D` 可以预览；正式发布前请补充内容、分类并设置 `draft = false`。
+使用 `hugo server -D` 可以预览草稿；正式发布前请补充内容、分类并设置 `draft = false`。
 
 注意：`docs/` 是仓库说明文档，不属于 Hugo 文章。希望在博客展示的文档，应由作者整理到 `content/posts/` 并设置 Front Matter 后发布。
 
