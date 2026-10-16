@@ -1,0 +1,4 @@
+baseURL = 'https://jeff-545.github.io/blog'
+locale = 'zh-cn'
+title = '求真明智'
+theme = "ananke"
