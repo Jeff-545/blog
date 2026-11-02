@@ -2,7 +2,7 @@
 title = '【Pi Agent】常用的技能、插件、包'
 date='2026-10-16'
 draft = false
-categories = ['Pi']
+categories = ['Agent']
 description = '个人常用的 Pi Agent 技能、插件、包'
 +++
 
