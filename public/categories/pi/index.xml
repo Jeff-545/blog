@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+	<channel>
+		<title>Pi on 求真明智</title>
+		<link>http://localhost:1313/blog/categories/pi/</link>
+		<description>Recent content in Pi on 求真明智</description>
+		<generator>Hugo</generator>
+		<language>zh-cn</language>
+		
+		
+		
+		
+			<lastBuildDate>Fri, 16 Oct 2026 00:00:00 +0000</lastBuildDate>
+		
+			<atom:link href="http://localhost:1313/blog/categories/pi/index.xml" rel="self" type="application/rss+xml" />
+			<item>
+				<title>【Pi Agent】常用的技能、插件、包</title>
+				<link>http://localhost:1313/blog/posts/02-techknowledge/agent-use/pi-agent%E5%B8%B8%E7%94%A8%E7%9A%84%E6%8A%80%E8%83%BD%E6%8F%92%E4%BB%B6%E5%8C%85/</link>
+				<pubDate>Fri, 16 Oct 2026 00:00:00 +0000</pubDate>
+				<guid>http://localhost:1313/blog/posts/02-techknowledge/agent-use/pi-agent%E5%B8%B8%E7%94%A8%E7%9A%84%E6%8A%80%E8%83%BD%E6%8F%92%E4%BB%B6%E5%8C%85/</guid>
+				<description>&lt;h3 id=&#34;基础&#34;&gt;基础&lt;/h3&gt;&#xA;&lt;p&gt;superpowers&#xA;用于指导Agent运行&lt;/p&gt;&#xA;&lt;h3 id=&#34;上下文压缩&#34;&gt;上下文压缩&lt;/h3&gt;&#xA;&lt;p&gt;context-mode&#xA;用于压缩对话上下文&#xA;有收费版和免费版，普通用户使用免费版就够用了，收费版主要是加入了长上下文云端压缩的机制，以及让用户可以在不同设备上同步上下文的功能。&lt;/p&gt;&#xA;&lt;p&gt;billion-context&#xA;用于优化历史记录的压缩&lt;/p&gt;&#xA;&lt;h3 id=&#34;画图&#34;&gt;画图&lt;/h3&gt;&#xA;&lt;p&gt;archify&#xA;可以很方便的绘制流程图、数据流向图等&lt;/p&gt;</description>
+			</item>
+	</channel>
+</rss>
